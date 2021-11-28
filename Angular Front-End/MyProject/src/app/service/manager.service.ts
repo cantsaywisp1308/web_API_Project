@@ -11,7 +11,7 @@ import { UsernameAndPassword } from "../entity/usernameAndPassword.entity";
 @Injectable()
 export class ManagerService {
 
-    private BASE_URL = "https://localhost:44325/api/manager";
+    private BASE_URL = "http://localhost:59121/api/manager";
     private loggedIn = false;
 
     constructor(

@@ -83,7 +83,7 @@ upload(){
   for (let file of this.files) {
        formData.append('files', file);
   }
-  this.httpClient.post('http://localhost:38937/api/admin/uploads', formData).toPromise().then(
+  this.httpClient.post('http://localhost:59121/api/admin/uploads', formData).toPromise().then(
       res => {
           console.log(res);
           this.res = res;

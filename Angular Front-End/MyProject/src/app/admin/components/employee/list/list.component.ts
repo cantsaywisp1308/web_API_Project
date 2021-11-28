@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/entity/employee.entity';
 import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { EmployeeService } from 'src/app/service/employee.service';
@@ -42,19 +42,20 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit() : void {
     this.addFormEmployee = this.formBuilder.group({
       joindate: new Date,
-      fullname: '',
-      username:'',
-      password:'',
-      address: '',
-      phonenumber:'',
-      country:'',
-      city:'',
-      policyid:'',
+      fullname: new FormControl(null, Validators.required),
+      username:new FormControl(null, Validators.required),
+      password:new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      phonenumber:new FormControl(null,
+        [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
+      country:new FormControl(null, Validators.required),
+      city:new FormControl(null, Validators.required),
+      policyid:new FormControl(null, Validators.required),
       policystatus:'Inactivated',
-      role:'',
-      managerid:'',
+      role:new FormControl(null, Validators.required),
+      managerid:new FormControl(null, Validators.required),
       photo:'https://localhost:44325/uploads/noavatar.png',
-      email:''
+      email: new FormControl(null, [Validators.required, Validators.email])
     });
       this.adminService.findAllEmployee().then(
           res => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/entity/employee.entity';
 import { Policy } from 'src/app/entity/policy.entity';
@@ -40,19 +40,20 @@ export class SignupComponent implements OnInit {
       
       this.addFormEmployee = this.formBuilder.group({
         joindate: new Date,
-        fullname: '',
-        username:'',
-        password:'',
-        address: '',
-        phonenumber:'',
-        country:'',
-        city:'',
-        policyid:'',
+        fullname: new FormControl(null, Validators.required),
+        username:new FormControl(null, Validators.required),
+        password:new FormControl(null, Validators.required),
+        address: new FormControl(null, Validators.required),
+        phonenumber:new FormControl(null,
+           [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
+        country:new FormControl(null, Validators.required),
+        city:new FormControl(null, Validators.required),
+        policyid:new FormControl(null, Validators.required),
         policystatus:'Inactivated',
         role:'employee',
-        managerid:'',
+        managerid:new FormControl(null, Validators.required),
         photo:'https://localhost:44325/uploads/noavatar.png',
-        email:''
+        email: new FormControl(null, [Validators.required, Validators.email])
       });
       this.adminService.listPolicy().then(
         res=> {

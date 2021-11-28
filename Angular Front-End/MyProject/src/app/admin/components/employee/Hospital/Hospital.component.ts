@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hospital } from 'src/app/entity/hospital.entity';
@@ -32,7 +32,9 @@ export class HospitalComponent implements OnInit {
       this.addFormHospital = this.formBuilder.group({
         hospitalId :'',
         hospitalname :'',
-        phoneNumber:'',
+        phoneNumber:new FormControl(null,
+          [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
+ 
         location:'',
         url :'',
       });

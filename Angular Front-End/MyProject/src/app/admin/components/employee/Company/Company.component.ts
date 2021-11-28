@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/entity/employee.entity';
 
 import { EmployeeService } from 'src/app/service/employee.service';
@@ -36,7 +36,9 @@ export class CompanyComponent implements OnInit {
       this.addFormCompany = this.formBuilder.group({
         companyName :'',
         address :'',
-        phone :'',
+        phone :new FormControl(null,
+          [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]),
+ 
         url :'',
       });
 

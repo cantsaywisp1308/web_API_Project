@@ -7,7 +7,7 @@ import { UsernameAndPassword } from "../entity/usernameAndPassword.entity";
 
 @Injectable()
 export class AccountService{
-    private BASE_URL: string = 'https://localhost:44325/api/account/';
+    private BASE_URL: string = 'http://localhost:59121/api/account/';
     private loggedIn = false;
     constructor(private httpClient: HttpClient) {
     }
